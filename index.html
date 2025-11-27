@@ -1,35 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Lugares Turísticos</title>
+    <meta charset="UTF-8">
+    <title>Explora Perú</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <!-- titulo principal -->
-  <h1>Lugares Turísticos del Mundo</h1>
-  <p>Bienvenido a mi página web sobre turismo. Aquí conocerás algunos de los destinos más impresionantes.</p>
 
-  <!-- sección de destinos -->
-  <h2>Destinos recomendados</h2>
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2 class="logo">Explora Perú</h2>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="destinos.html">Destinos</a>
+        <a href="acerca.html">Acerca de</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="admin.html">admin</a>
+    </nav>
+</header>
 
-  <h3>Machu Picchu (Perú)</h3>
-  <img src="machupicchu.jp" alt="Machu Picchu" width="250">
-  <p>Una de las maravillas del mundo moderno, ubicada en Cusco, Perú.</p>
+<!-- HERO PRINCIPAL -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>Descubre los lugares más increíbles del Perú</h1>
+        <p>Explora nuestra selección de destinos turísticos, desde montañas ancestrales hasta selvas llenas de vida.</p>
 
-  <h3>Torre Eiffel (Francia)</h3>
-  <img src="torreeiffel.avif" alt="Torre Eiffel" width="250">
-  <p>El monumento más famoso de París, símbolo de Francia.</p>
+        <div class="hero-buttons">
+            <a href="destinos.html" class="btn">Ver Destinos</a>
+            <a href="contacto.html" class="btn secondary">Contacto</a>
+        </div>
+    </div>
+</section>
 
-  <h3>Chichen Itzá (México)</h3>
-  <img src="ChichenItza.jpg" alt="Chichen Itzá" width="250">
-  <p>Antigua ciudad maya, declarada Patrimonio de la Humanidad.</p>
+<!-- SECCIÓN INFORMATIVA -->
+<section class="info">
+    <h2>¿Por qué visitar el Perú?</h2>
+    <p>
+        Perú es un país lleno de historia, cultura y paisajes sorprendentes. 
+        Desde la grandeza del Imperio Inca y las maravillas naturales de la Amazonía, 
+        hasta playas, desiertos, montañas y una gastronomía reconocida mundialmente, 
+        cada región ofrece experiencias únicas para los viajeros.
+    </p>
 
-  <!-- sección tips -->
-  <h2>Tips de viaje</h2>
-  <ul>
-    <li>Lleva siempre una copia de tus documentos.</li>
-    <li>Aprende frases básicas del idioma local.</li>
-    <li>Haz una lista de los lugares que quieres visitar.</li>
-  </ul>
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>Historia</h3>
+            <p>Descubre antiguas culturas como los incas, mochicas, nazcas y más.</p>
+        </div>
+
+        <div class="info-card">
+            <h3>Naturaleza</h3>
+            <p>Explora selvas, montañas, volcanes, lagunas y desiertos.</p>
+        </div>
+
+        <div class="info-card">
+            <h3>Gastronomía</h3>
+            <p>Considerada una de las mejores cocinas del mundo por su diversidad.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2025 - Explora Perú | Proyecto académico personal</p>
+</footer>
+
 </body>
 </html>

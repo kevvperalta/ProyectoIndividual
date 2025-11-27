@@ -1,0 +1,179 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f8f8;
+    margin: 0;
+    padding: 20px;
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 35px;
+}
+
+/* GRID DE DEPARTAMENTOS */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    display: block;
+    background: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 8px #ccc;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card h3 {
+    color: #333;
+    padding: 10px;
+}
+
+/* SECCIONES DETALLE — OCULTAS POR DEFECTO */
+.detalle {
+    display: none;
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px #aaa;
+    border-radius: 10px;
+}
+
+/* Cuando el ancla coincide con el id → se muestra */
+:target {
+    display: block;
+}
+
+/* Grid de lugares */
+.lugares {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.lugares img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.volver {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+/* NAVBAR */
+.navbar {
+    background: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px #ccc;
+    margin-bottom: 10px;
+}
+
+.logo {
+    margin: 0;
+}
+
+.navbar nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.navbar nav a:hover {
+    color: #0077cc;
+}
+
+/* HERO */
+.hero {
+    background: url("https://upload.wikimedia.org/wikipedia/commons/3/32/Machu_Picchu%2C_Peru.jpg") no-repeat center center/cover;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 40px;
+}
+
+.hero-text {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    text-shadow: 2px 2px 5px black;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-top: 10px;
+    text-shadow: 1px 1px 3px black;
+}
+
+.hero-buttons .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #0077cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.hero-buttons .secondary {
+    background: #ffffffaa;
+    color: #003366;
+}
+
+/* SECCIÓN INFORMACIÓN */
+.info {
+    padding: 40px;
+    text-align: center;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.info-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background: #eee;
+}
+
