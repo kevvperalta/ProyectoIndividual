@@ -110,7 +110,7 @@ body {
 
 /* HERO */
 .hero {
-    background: url("https://upload.wikimedia.org/wikipedia/commons/3/32/Machu_Picchu%2C_Peru.jpg") no-repeat center center/cover;
+    background: url("https://s3.us-east-1.amazonaws.com/ca-webprod/media/hoteles-machu-picchu.webp?s=7818474") no-repeat center center/cover;
     height: 450px;
     display: flex;
     align-items: center;
