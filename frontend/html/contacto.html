@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explora Perú - Contacto</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/script.js" defer></script>
+    <style>
+        /* Estilos adicionales para feedback del formulario */
+        .mensaje-exito {
+            background: #2ecc71;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+            display: none;
+        }
+        
+        .mensaje-error {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+            display: none;
+        }
+        
+        .cargando {
+            display: none;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0077cc;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <h1>Explora Perú</h1>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="destinos.html">Destinos</a>
+            <a href="recursos.html">Recursos</a>
+            <a href="acerca.html">Acerca de</a>
+            <a href="contacto.html" style="color:#0077cc;">Contacto</a>
+        </nav>
+    </header>
+
+    <section class="hero" style="background-image: url('https://s3.us-east-1.amazonaws.com/ca-webprod/media/hoteles-machu-picchu.webp?s=7818474');">
+        <div class="hero-content">
+            <h2>Contáctanos</h2>
+            <p>Envíanos tus dudas o sugerencias. Estamos aquí para ayudarte.</p>
+        </div>
+    </section>
+
+    <!-- FORMULARIO  -->
+    <main>
+        <section class="card">
+            <h2>Contáctanos</h2>
+            <p>Si tienes dudas, sugerencias o deseas más información, puedes enviarnos un mensaje:</p>
+            
+            <!-- Mensajes de feedback -->
+            <div id="mensaje-exito" class="mensaje-exito">
+                <strong>✓ Mensaje enviado correctamente</strong>
+                <p>Gracias por contactarnos. Te responderemos pronto.</p>
+            </div>
+            
+            <div id="mensaje-error" class="mensaje-error">
+                <strong id="error-titulo">Error</strong>
+                <p id="error-detalle">Ha ocurrido un error al enviar el mensaje.</p>
+            </div>
+            
+            <!-- Spinner de carga -->
+            <div id="cargando" class="cargando">
+                <div class="spinner"></div>
+                <p>Enviando mensaje...</p>
+            </div>
+
+            <!-- Formulario actualizado para usar JavaScript -->
+            <form id="formulario-contacto" method="POST">
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre" required 
+                       placeholder="Tu nombre completo"><br><br>
+
+                <label for="email">Correo electrónico:</label><br>
+                <input type="email" id="email" name="email" required 
+                       placeholder="tu@email.com"><br><br>
+
+                <label for="mensaje">Mensaje:</label><br>
+                <textarea id="mensaje" name="mensaje" rows="5" required 
+                          placeholder="Escribe tu mensaje aquí... (mínimo 10 caracteres)"></textarea><br><br>
+
+                <button type="submit" id="btn-enviar">Enviar Mensaje</button>
+            </form>
+            
+            <p style="margin-top: 20px; font-size: 14px; color: #666;">
+                <em>Tu mensaje se guardará en nuestra base de datos y te responderemos a la brevedad.</em>
+            </p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 - Explora Perú. Proyecto personal.</p>
+    </footer>
+
+    <script>
+        // Script específico para el formulario de contacto
+        document.addEventListener('DOMContentLoaded', function() {
+            const formulario = document.getElementById('formulario-contacto');
+            const btnEnviar = document.getElementById('btn-enviar');
+            const mensajeExito = document.getElementById('mensaje-exito');
+            const mensajeError = document.getElementById('mensaje-error');
+            const errorTitulo = document.getElementById('error-titulo');
+            const errorDetalle = document.getElementById('error-detalle');
+            const cargando = document.getElementById('cargando');
+            
+            // Determinar la URL base del backend
+            // En desarrollo: http://localhost:5000
+            // En producción: tu_url_de_render.com
+            const esLocalhost = window.location.hostname === 'localhost' || 
+                               window.location.hostname === '127.0.0.1';
+            const BASE_URL ='';
+            
+            formulario.addEventListener('submit', async function(evento) {
+                evento.preventDefault();
+                
+                // Ocultar mensajes anteriores
+                mensajeExito.style.display = 'none';
+                mensajeError.style.display = 'none';
+                
+                // Validación básica del frontend
+                const nombre = document.getElementById('nombre').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const mensaje = document.getElementById('mensaje').value.trim();
+                
+                let errores = [];
+                
+                if (!nombre) errores.push('El nombre es obligatorio');
+                if (!email) errores.push('El email es obligatorio');
+                else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    errores.push('Ingresa un email válido');
+                }
+                if (!mensaje) errores.push('El mensaje es obligatorio');
+                else if (mensaje.length < 10) {
+                    errores.push('El mensaje debe tener al menos 10 caracteres');
+                }
+                
+                if (errores.length > 0) {
+                    mostrarError('Error de validación', errores.join('<br>'));
+                    return;
+                }
+                
+                // Mostrar spinner de carga
+                cargando.style.display = 'block';
+                btnEnviar.disabled = true;
+                btnEnviar.textContent = 'Enviando...';
+                
+                try {
+                    // Enviar datos al backend
+                    const respuesta = await fetch(`${BASE_URL}/api/contacto`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            nombre: nombre,
+                            email: email,
+                            mensaje: mensaje
+                        })
+                    });
+                    
+                    const datos = await respuesta.json();
+                    
+                    if (respuesta.ok && datos.success) {
+                        // Éxito
+                        mostrarExito();
+                        formulario.reset();
+                    } else {
+                        // Error del servidor
+                        mostrarError(
+                            datos.message || 'Error del servidor',
+                            datos.error || 'No se pudo procesar tu mensaje'
+                        );
+                    }
+                } catch (error) {
+                    // Error de conexión
+                    mostrarError(
+                        'Error de conexión',
+                        'No se pudo conectar con el servidor. Verifica tu conexión a internet.'
+                    );
+                    console.error('Error:', error);
+                } finally {
+                    // Ocultar spinner
+                    cargando.style.display = 'none';
+                    btnEnviar.disabled = false;
+                    btnEnviar.textContent = 'Enviar Mensaje';
+                }
+            });
+            
+            function mostrarExito() {
+                mensajeExito.style.display = 'block';
+                // Desplazar suavemente al mensaje
+                mensajeExito.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            function mostrarError(titulo, detalle) {
+                errorTitulo.textContent = titulo;
+                errorDetalle.innerHTML = detalle;
+                mensajeError.style.display = 'block';
+                // Desplazar suavemente al mensaje de error
+                mensajeError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+    </script>
+</body>
+</html>
