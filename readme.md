@@ -9,8 +9,12 @@ Explora Perú es una aplicación web turística que presenta información sobre 
 Tecnologías Utilizadas:
 
 Frontend: HTML5, CSS, JavaScript
-Backend: Python, Flask
+Backend: Python, flask
 Base de Datos: MySQL, SQL
 Hospedaje: Render (backend/frontend), Railway (base de datos)
 
 Control de Versiones: Git, GitHub
+
+(NUEVO):
+Profesor puede verificar que los mensajes se guardan en mi base de datos remota con el siguiente url:  https://explora-peru.onrender.com/api/contacto 
+
